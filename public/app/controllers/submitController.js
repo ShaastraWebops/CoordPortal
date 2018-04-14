@@ -1,5 +1,4 @@
-angular.module('fileModelDirective',[])
-//directive to parse the filename and update the scope with this parsed file
+angular.module('submitController',['userServices','ngMaterial'])
 .directive('fileModel',['$parse',function($parse){
   return{
     restrict: 'A', //restricting to attributes only
@@ -13,4 +12,9 @@ angular.module('fileModelDirective',[])
       });
     }
   };
-}]);
+}])
+.controller('submitCtrl',function(User,$scope,$window,$http){
+$scope.Submit = function() {
+  User.upload($scope.file).then(function(data){});
+};
+});

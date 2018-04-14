@@ -5,6 +5,11 @@ var app = angular.module('appRoutes',['ngRoute'])
     controller: 'mainCtrl',
     controllerAs: 'Ctrl'
   })
+  .when('/submit',{
+    templateUrl: 'app/views/pages/submit.html',
+    controller: 'submitCtrl',
+    controllerAs: 'submit'
+  })
   .otherwise({redirectTo:'/'});
 
   $locationProvider.html5Mode({

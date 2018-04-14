@@ -1,5 +1,5 @@
 angular.module('mainController',['userServices','ngMaterial'])
-.controller('mainCtrl',function(User,$scope,$window){
+.controller('mainCtrl',function(User,$scope,$window,$http){
   var app=this;
   var departments = {
 	"Concept and Design" : {
@@ -370,15 +370,6 @@ this.display = false;
 	var department, position;
 	this.department = '';
 	this.position = '';
-  //
-	// this.setDept = function(){
-	// 	this.department = document.getElementById('dept').value;
-	// };
-  //
-	// this.setPos = function(){
-	// 	this.position = document.getElementById('position').value;
-	// }
-
 	this.showPDF = function(){
 		var app_name = '';
 		var j=0;
@@ -416,9 +407,9 @@ this.display = false;
 		// }
 	};
 
-	this.show = function()
+	this.openSubmit = function()
 	{
-		this.display = true;
+		$window.open('/submit','_self');
 	}
 
 

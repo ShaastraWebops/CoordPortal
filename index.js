@@ -8,6 +8,13 @@ var appRoutes=require('./app/routes/api')(router);
 var port = process.env.PORT || 8080;
 var path=require('path');
 var multer=require('multer');
+var fs = require('fs');
+var cloudinary = require('cloudinary');
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: API_KEY,
+  api_secret: API_SECRET
+});
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -20,12 +27,12 @@ var storage = multer.diskStorage({
     cb(null,'./app/routes/uploads/');   //storing images temporarily
   },
   filename: function(req,file, cb){
-    if(!file.originalname.match(/\.(pdf)$/)){
+    if(!file.originalname.match(/\.(png)$/)){
       var err = new Error();
       err.code='filetype';
       return cb(err);
     } else {
-      cb(null, Date.now() + '_' + file.originalname);
+      cb(null, file.originalname);
     }
   }
 });
@@ -50,6 +57,11 @@ app.post('/upload',function(req,res){
          }
          else {
            if(req.file){
+             cloudinary.uploader.upload("./app/routes/uploads/" + req.file.originalname,
+              function(result) {
+                 var filePath = './app/routes/uploads/' + req.file.originalname;
+                 fs.unlinkSync(filePath);
+              });
              res.json({success: true, message: "File uploaded",path: req.file.path,name: req.file.originalname});
            }else {
              res.json({success: false, message: "No file received"});

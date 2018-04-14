@@ -1,0 +1,23 @@
+<div class="masthead">
+  <div class="masthead-bg"></div>
+  <div class="container h-100"><br><br>
+
+    <div>
+
+      <img src="logo.png" class="slogo" style="filter:saturate(600%);">
+    </div>
+    <div>
+      <h1 class="stitle">Coordinator Applications</h1>
+    </div>
+
+  </div>
+</div>
+<div class="social-icons">
+<form ng-submit="Submit(main.username);">
+<label class="btn btn-success">Browse Files <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" style="display: none;">
+</label>
+<label>{{file.upload.name}}</label>
+<br>
+<button class="btn btn-primary" ng-disabled="uploading" type="submit">Upload</button>
+</form>
+</div>

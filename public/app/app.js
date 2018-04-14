@@ -1,3 +1,3 @@
-angular.module('userApp',['appRoutes','mainController','ngMaterial'])
+angular.module('userApp',['appRoutes','mainController','ngMaterial','submitController'])
 .config(function(){
 });

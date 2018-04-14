@@ -1,1 +1,1 @@
-This folder is for temporarily storing the uploaded files
+This folder is a buffer for uploading to cloudinary. this should not be deleted.

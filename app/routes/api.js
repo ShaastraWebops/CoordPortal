@@ -11,6 +11,5 @@ mongoose.connect('mongodb://localhost:27017/webapp',function(err){
 module.exports = function(router){
 //router= export all accessing done to server
 
-
   return router;
 };
