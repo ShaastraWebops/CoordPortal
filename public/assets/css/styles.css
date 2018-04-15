@@ -61,6 +61,10 @@ body {
     width:95vw;
     margin-left: 2.5vw;
   }
+  .submitcontrols{
+    width:95vw;
+    margin-left: 2.5vw;
+  }
 
 }
 
@@ -72,6 +76,9 @@ body {
   }
   .selectbox{
     font-size:2em;width:30vw;
+  }
+  .submitcontrols{
+    width:30vw;
   }
   .stitle{
     color: black;

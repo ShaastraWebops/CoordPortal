@@ -11,9 +11,9 @@ var multer=require('multer');
 var fs = require('fs');
 var cloudinary = require('cloudinary');
 cloudinary.config({
-  cloud_name: CLOUD_NAME,
-  api_key: API_KEY,
-  api_secret: API_SECRET
+  cloud_name: 'shaastra-apps',
+  api_key: '432668415634784',
+  api_secret: 'qX0H92PldVlzbax1zQfwNhDiPuI'
 });
 
 app.use(morgan('dev'));

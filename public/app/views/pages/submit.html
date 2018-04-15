@@ -1,23 +1,44 @@
-<div class="masthead">
-  <div class="masthead-bg"></div>
-  <div class="container h-100"><br><br>
 
-    <div>
-
-      <img src="logo.png" class="slogo" style="filter:saturate(600%);">
-    </div>
-    <div>
-      <h1 class="stitle">Coordinator Applications</h1>
-    </div>
-
-  </div>
-</div>
 <div class="social-icons">
-<form ng-submit="Submit(main.username);">
+<!-- <form ng-submit="Submit(main.username);"> -->
+<md-input-container class="md-block submitcontrols" flex-gt-sm>
+            <label>Name</label>
+            <input ng-model="user.firstName">
+</md-input-container>
+
+<md-input-container class="md-block submitcontrols" flex-gt-sm>
+            <label>Roll No.</label>
+            <input ng-model="user.roll">
+</md-input-container>
+
+<md-input-container class="md-block submitcontrols" flex-gt-sm>
+            <label>Email</label>
+            <input ng-model="user.email">
+</md-input-container>
+<div style="margin-top:-3vh;">
+<md-input-container>
+      <label>Select Department</label>
+      <md-select id="dept" ng-model="department" class="submitcontrols" ng-change="Ctrl.setDept()">
+        <md-option ng-repeat="(key,val) in Ctrl.depts" ng-value="key" >
+          <span style="font-size:0.6em;padding-top:0.6em;">{{key}}</span>
+        </md-option>
+      </md-select>
+</md-input-container>
+</div>
+<md-input-container>
+      <label>Select Position</label>
+      <md-select ng-model="position" class="submitcontrols">
+        <md-option ng-repeat="(key,value) in Ctrl.app[department]" ng-value="value">
+          <span style="font-size:0.6em;padding-top:0.6em;">{{value.name}}</span>
+        </md-option>
+      </md-select>
+</md-input-container>
+    <br>
+
 <label class="btn btn-success">Browse Files <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" style="display: none;">
 </label>
 <label>{{file.upload.name}}</label>
 <br>
 <button class="btn btn-primary" ng-disabled="uploading" type="submit">Upload</button>
-</form>
+<!-- </form> -->
 </div>
