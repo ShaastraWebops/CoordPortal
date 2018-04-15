@@ -2,22 +2,22 @@
 <div class="social-icons">
 <!-- <form ng-submit="Submit(main.username);"> -->
 <md-input-container class="md-block submitcontrols" flex-gt-sm>
-            <label>Name</label>
-            <input ng-model="user.firstName">
+            <label>Name*</label>
+            <input ng-model="user.name">
 </md-input-container>
 
 <md-input-container class="md-block submitcontrols" flex-gt-sm>
-            <label>Roll No.</label>
+            <label>Roll No.*</label>
             <input ng-model="user.roll">
 </md-input-container>
 
 <md-input-container class="md-block submitcontrols" flex-gt-sm>
-            <label>Email</label>
+            <label>Email*</label>
             <input ng-model="user.email">
 </md-input-container>
 <div style="margin-top:-3vh;">
 <md-input-container>
-      <label>Select Department</label>
+      <label>Select Department*</label>
       <md-select id="dept" ng-model="department" class="submitcontrols" ng-change="submit.setDept()">
         <md-option ng-repeat="(key,val) in submit.depts" ng-value="key" >
           <span style="font-size:1em;padding-top:0.6em;">{{key}}</span>
@@ -26,7 +26,7 @@
 </md-input-container>
 </div>
 <md-input-container>
-      <label>Select Position</label>
+      <label>Select Position*</label>
       <md-select ng-model="position" class="submitcontrols">
         <md-option ng-repeat="(key,value) in submit.app[department]" ng-value="value">
           <span style="font-size:1em;padding-top:0.6em;">{{value.name}}</span>
@@ -35,10 +35,12 @@
 </md-input-container>
     <br>
 
-<label class="btn btn-success">Browse Files <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" style="display: none;">
+<label class="btn btn-default">Upload App* <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" style="display: none;">
 </label>
 <label>{{file.upload.name}}</label>
 <br>
-<button class="btn btn-primary" ng-disabled="uploading" type="submit">Upload</button>
+<div style="padding-left: 40%;">
+<md-button class="getappbutton" style="font-size: 1.2em;" ng-click="submitApp()">Submit</md-button>
+</div>
 <!-- </form> -->
 </div>

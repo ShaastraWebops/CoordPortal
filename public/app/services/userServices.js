@@ -1,6 +1,9 @@
 angular.module('userServices',[])
 .factory('User',function($http){
   userfactory = [];
+userfactory.addUser=function(user) {
+  return $http.post('/api/adduser',user);
+};
 userfactory.upload=function(file) {
   var fd= new FormData();
   fd.append('image',file.upload);   //image is the name given to the browse label and file.upload contains the data as it is the call to the fileModel.js

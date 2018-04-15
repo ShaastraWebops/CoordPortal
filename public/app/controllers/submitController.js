@@ -16,7 +16,22 @@ angular.module('submitController',['userServices','ngMaterial'])
 .controller('submitCtrl',function(User,$scope,$window,$http,DEPARTMENTS,APPS){
   this.depts = DEPARTMENTS;
   this.app = APPS;
-$scope.Submit = function() {
-  User.upload($scope.file).then(function(data){});
+$scope.submitApp = function() {
+  $scope.user.app = $scope.file.upload.name;
+  $scope.user.department = $scope.department;
+  $scope.user.position = $scope.position.name;
+  User.addUser($scope.user).then(function(res) {
+    console.log(res.data);
+    if (res.data.success) {
+      User.upload($scope.file).then(function(data){
+        console.log(data.data);
+        if (data.data.success) {
+          $scope.msg = "Submitted!";
+        } else {
+          $scope.msg = "Error in submission";
+        }
+      });
+    }
+  });
 };
 });

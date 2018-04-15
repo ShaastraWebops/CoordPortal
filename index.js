@@ -61,7 +61,8 @@ app.post('/upload',function(req,res){
               function(result) {
                  var filePath = './app/routes/uploads/' + req.file.originalname;
                  fs.unlinkSync(filePath);
-              });
+              }
+            );
              res.json({success: true, message: "File uploaded",path: req.file.path,name: req.file.originalname});
            }else {
              res.json({success: false, message: "No file received"});
