@@ -27,7 +27,7 @@ var storage = multer.diskStorage({
     cb(null,'./app/routes/uploads/');   //storing images temporarily
   },
   filename: function(req,file, cb){
-    if(!file.originalname.match(/\.(png)$/)){
+    if(!file.originalname.match(/\.(pdf)$/)){
       var err = new Error();
       err.code='filetype';
       return cb(err);
