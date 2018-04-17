@@ -60,10 +60,10 @@ app.post('/upload',function(req,res){
              cloudinary.uploader.upload("./app/routes/uploads/" + req.file.originalname,
               function(result) {
                  var filePath = './app/routes/uploads/' + req.file.originalname;
-                 fs.unlinkSync(filePath);
+                 fs.unlink(filePath);
+                 res.json({success: true, message: "File uploaded", url: result.secure_url});
               }
             );
-             res.json({success: true, message: "File uploaded",path: req.file.path,name: req.file.originalname});
            }else {
              res.json({success: false, message: "No file received"});
            }

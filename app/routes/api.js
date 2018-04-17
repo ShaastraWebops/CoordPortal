@@ -1,6 +1,6 @@
 var User=require('../models/user');
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost:27017/webapp',function(err){
+mongoose.connect('mongodb://localhost:27017/CoordPortal',function(err){
   if(err)
   console.log("Not Connected!!");
   else {
@@ -19,7 +19,7 @@ router.post('/adduser',function(req,res){
     user.app_name = req.body.app;
 
     user.save(function(err){
-      if(err) { res.json(err);}
+      if(err) { res.json({success: false, message: err});}
       else {
         res.json({success: true, message: 'User added'});
       }

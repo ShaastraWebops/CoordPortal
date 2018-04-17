@@ -35,12 +35,24 @@
 </md-input-container>
     <br>
 
-<label class="btn btn-default">Upload App* <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" style="display: none;">
+<div style="padding-left: 10%;">
+<label class="btn btn-primary">Click Here to Upload Your Application* <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" style="display: none;">
 </label>
-<label>{{file.upload.name}}</label>
-<br>
-<div style="padding-left: 40%;">
-<md-button class="getappbutton" style="font-size: 1.2em;" ng-click="submitApp()">Submit</md-button>
+<label ng-show="file.upload.name"><b> Uploaded File: </b>{{file.upload.name}}</label>
+</div>
+<div style="padding-left: 25%;">
+<md-button ng-show="!uploading" class="getappbutton" style="font-size: 1.2em;" ng-click="submitApp()">Submit</md-button>
+<div ng-show="uploading">
+  <br>
+<b>Loading</b> <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+</div>
+
+<div class="row show-hide-message" ng-show="errormsg">
+<div class="alert alert-danger"> {{errormsg}} </div>
+</div>
+<div class="row show-hide-message" ng-show="successmsg">
+<div class="alert alert-success"> {{successmsg}} </div>
 </div>
 <!-- </form> -->
 </div>

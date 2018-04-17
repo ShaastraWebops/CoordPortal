@@ -16,21 +16,42 @@ angular.module('submitController',['userServices','ngMaterial'])
 .controller('submitCtrl',function(User,$scope,$window,$http,DEPARTMENTS,APPS){
   this.depts = DEPARTMENTS;
   this.app = APPS;
+  $scope.uploading = false;
+  $scope.errormsg = null;
+  $scope.successmsg = null;
 $scope.submitApp = function() {
-  $scope.user.app = $scope.file.upload.name;
+  $scope.errormsg = null;
+  $scope.successmsg = null; 
+  $scope.uploading = true;
+  if (!$scope.file || !$scope.department || !$scope.position || !$scope.user.name || !$scope.user.email || !$scope.user.roll) {
+    $scope.errormsg = "All fields are necessary.";
+    $scope.uploading = false;
+    return;
+  }
   $scope.user.department = $scope.department;
   $scope.user.position = $scope.position.name;
-  User.addUser($scope.user).then(function(res) {
-    console.log(res.data);
-    if (res.data.success) {
-      User.upload($scope.file).then(function(data){
-        console.log(data.data);
-        if (data.data.success) {
-          $scope.msg = "Submitted!";
+  User.upload($scope.file).then(function(data){
+    if (data.data.success) {
+      $scope.user.app = data.data.url;
+      User.addUser($scope.user).then(function(res) {
+        if (res.data.success) {
+          $scope.user = null;
+          $scope.file = null;
+          $scope.department = null;
+          $scope.position = null;
+          $scope.successmsg = "Submitted!";
+          $scope.errormsg = null;
+          $scope.uploading = false;
         } else {
-          $scope.msg = "Error in submission";
+          $scope.errormsg = res.data;
+          $scope.successmsg = null;
+          $scope.uploading = false;
         }
       });
+    } else {
+      $scope.errormsg = data.data.message;
+      $scope.successmsg = null;
+      $scope.uploading = false;
     }
   });
 };

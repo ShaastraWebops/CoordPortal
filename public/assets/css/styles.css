@@ -35,7 +35,7 @@ body {
 @media (max-width: 767px) {
   .getappbutton{
     margin-left:25vw;
-    width:50vw;
+    width:55vw;
   }
   .slogo{
     width:100%;
@@ -209,7 +209,7 @@ body {
     margin: 0;
     position: absolute;
     left: 60vw;
-    top: 20vh;
+    top: 15vh;
     width: auto;
   }
   .social-icons ul {

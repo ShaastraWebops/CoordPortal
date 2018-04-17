@@ -14,7 +14,7 @@ var emailValidator = [
 var userSchema = new Schema({
   name: {type: String, required: true},
   rollno: {type: String, required: true},
-  email: {type: String, required: true, unique: true, validate: emailValidator},
+  email: {type: String, required: true, validate: emailValidator},
   department: {type: String, required: true},
   position: {type: String, required: true},
   app_name: {type: String, required: true}
