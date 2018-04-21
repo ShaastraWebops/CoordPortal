@@ -1,5 +1,5 @@
 angular.module('mainController',['userServices','ngMaterial'])
-.controller('mainCtrl',function(User,$scope,$window,$http,DEPARTMENTS,APPS){
+.controller('mainCtrl',function(User,$scope,$rootScope,$window,$http,DEPARTMENTS,APPS){
   var app=this;
 this.display = false;
 	this.depts = DEPARTMENTS;
@@ -35,9 +35,15 @@ this.display = false;
 		}
 		$window.open(this.path + app_name +'.pdf', '_blank');
 	};
-
+  // this.test = function() {
+  //   console.log($scope.position.name);
+  //   $rootScope.globaldept = $scope.department;
+  //   console.log($rootScope.globaldept);
+  // }
 	this.openSubmit = function()
 	{
+    // $rootScope.globaldept = $scope.department;
+    // $rootScope.globalpos = $scope.position;
 		$window.open('/submit','_self');
 	}
 

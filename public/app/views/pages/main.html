@@ -16,27 +16,54 @@
 
     <div class="social-icons">
       <!-- <div layout="column"> -->
-      <md-input-container>
-            <label>Select Department</label>
-            <md-select id="dept" ng-model="department" class="selectbox" ng-change="Ctrl.setDept()">
-              <!-- <md-option ng-disabled=><em>None</em></md-option> -->
-              <md-option ng-repeat="(key,val) in Ctrl.depts" ng-value="key" >
-                <span style="font-size:0.6em;padding-top:0.6em;">{{key}}</span>
-              </md-option>
-            </md-select>
-          </md-input-container>
+<md-input-container>
+      <label>Select Department</label>
+      <md-select id="dept" ng-model="department" class="selectbox" >
+        <md-option ng-repeat="(key,val) in Ctrl.depts" ng-value="key" >
+          <span style="font-size:0.6em;padding-top:0.6em;">{{key}}</span>
+        </md-option>
+      </md-select>
+    </md-input-container>
 <br><br>
-          <md-input-container>
-                <label>Select Position</label>
-                <md-select ng-model="position" class="selectbox">
-                  <!-- <md-option ng-disabled=><em>None</em></md-option> -->
-                  <md-option ng-repeat="(key,value) in Ctrl.app[department]" ng-value="value">
-                    <span style="font-size:0.6em;padding-top:0.6em;">{{value.name}}</span>
-                  </md-option>
-                </md-select>
-              </md-input-container>
-              <br><br>
-              <md-button class="getappbutton" ng-click="Ctrl.showPDF()" style=" font-size:18px;" >Get Application</md-button>
-              <md-button class="getappbutton" ng-click="Ctrl.openSubmit()" style=" font-size:18px;" >Submit Application</md-button>
-    <!-- </div> -->
+<!-- Events -->
+<div ng-show="department == 'Events'">
+    <md-input-container>
+          <label>Select Position</label>
+          <md-select ng-model="position" class="selectbox">
+            <md-option ng-repeat="(key,value) in Ctrl.app[department]" ng-value="key">
+              <span style="font-size:0.6em;padding-top:0.6em;">{{key}}</span>
+            </md-option>
+          </md-select>
+    </md-input-container>
+    <br><br>
+    <md-input-container>
+          <label>Select Vertical</label>
+          <md-select ng-model="vertical"  class="selectbox" >
+            <md-option ng-repeat="(key,value) in Ctrl.event[position]" ng-value="value">
+              <span style="font-size:0.6em;padding-top:0.6em;">{{value.name}}</span>
+            </md-option>
+          </md-select>
+    </md-input-container>
+</div>
+<br><br>
+
+    <!-- Not events -->
+    <div ng-hide="department == 'Events'">
+    <md-input-container>
+          <label>Select Position</label>
+          <md-select ng-model="position" class="selectbox">
+            <md-option ng-repeat="(key,value) in Ctrl.app[department]" ng-value="value">
+              <span style="font-size:0.6em;padding-top:0.6em;">{{key}}</span>
+            </md-option>
+          </md-select>
+    </md-input-container>
+    <br><br>
+  </div><br>
+      <!--  <a href="submit.html" style="color:inherit;" target="_blank"><md-button  style="font-size: 18px">Submit Application</md-button></a> -->
+      <div style="text-align:center;">
+
+        <md-button ng-click="Ctrl.showPDF()" style=" font-size:18px;" >Get Application</md-button>
+<!-- <br> -->
+              <md-button ng-click="Ctrl.openSubmit()" style=" font-size:18px;" >Submit Application</md-button>
+    </div>
      </div>

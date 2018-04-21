@@ -359,4 +359,4 @@ angular.module('userApp',['appRoutes','mainController','ngMaterial','submitContr
   name: "Webops",
   emails: ["akshayanand", "nilay"]
 }
-});
+})

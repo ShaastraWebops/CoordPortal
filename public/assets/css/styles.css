@@ -83,7 +83,7 @@ body {
   .stitle{
     color: black;
     filter: saturate(400%);
-    padding-left:2vw;
+    padding-left:5vw;
   }
   .overlay {
     min-height: 0;

@@ -1,4 +1,8 @@
-
+<style media="screen">
+.swal2-container.swal2-shown {
+background-color: rgba(0,0,0 ,1 );
+}
+</style>
 <div class="social-icons">
 <!-- <form ng-submit="Submit(main.username);"> -->
 <md-input-container class="md-block submitcontrols" flex-gt-sm>
@@ -7,7 +11,7 @@
 </md-input-container>
 
 <md-input-container class="md-block submitcontrols" flex-gt-sm>
-            <label>Roll No.*</label>
+            <label>Roll No*</label>
             <input ng-model="user.roll">
 </md-input-container>
 
@@ -19,7 +23,7 @@
 <md-input-container>
       <label>Select Department*</label>
       <md-select id="dept" ng-model="department" class="submitcontrols" ng-change="submit.setDept()">
-        <md-option ng-repeat="(key,val) in submit.depts" ng-value="key" >
+        <md-option ng-repeat="(key,val) in submit.depts" ng-value="key">
           <span style="font-size:1em;padding-top:0.6em;">{{key}}</span>
         </md-option>
       </md-select>
@@ -27,7 +31,7 @@
 </div>
 <md-input-container>
       <label>Select Position*</label>
-      <md-select ng-model="position" class="submitcontrols">
+      <md-select ng-model="position" ng-init="position = globalpos" class="submitcontrols">
         <md-option ng-repeat="(key,value) in submit.app[department]" ng-value="value">
           <span style="font-size:1em;padding-top:0.6em;">{{value.name}}</span>
         </md-option>
@@ -35,24 +39,19 @@
 </md-input-container>
     <br>
 
-<div style="padding-left: 10%;">
-<label class="btn btn-primary">Click Here to Upload Your Application* <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" style="display: none;">
-</label>
+<div  style="text-align:center;">
+<label class="btn btn-primary" ng-show="!ssb" >Upload App <input type="file" name="image" file-model="file.upload" ng-disabled="uploading" accept="application/pdf" style="display: none;">
+</label><br>
 <label ng-show="file.upload.name"><b> Uploaded File: </b>{{file.upload.name}}</label>
 </div>
-<div style="padding-left: 25%;">
-<md-button ng-show="!uploading" class="getappbutton" style="font-size: 1.2em;" ng-click="submitApp()">Submit</md-button>
-<div ng-show="uploading">
+<!-- <button type="button" ng-click="testfn()" name="button">hjbhjgb</button> -->
+<div style="text-align:center;">
+<button class="btn btn-primary" ng-show="!uploading" ng-if="ssb == true" class="getappbutton"  ng-click="submitApp()">Submit</button>
+<!-- <div ng-show="uploading">
   <br>
 <b>Loading</b> <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-</div>
+</div> -->
 </div>
 
-<div class="row show-hide-message" ng-show="errormsg">
-<div class="alert alert-danger"> {{errormsg}} </div>
-</div>
-<div class="row show-hide-message" ng-show="successmsg">
-<div class="alert alert-success"> {{successmsg}} </div>
-</div>
 <!-- </form> -->
 </div>
