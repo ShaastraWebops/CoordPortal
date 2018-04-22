@@ -2,7 +2,9 @@ var User=require('../models/user');
 var mongoose=require('mongoose');
 var dbuser = process.env.USER;
 var dbpassword = process.env.PASSWORD;
-mongoose.connect('mongodb://'+dbuser+':'+dbpassword+'@ds147659.mlab.com:47659/coordapps',{ useMongoClient: true },function(err){
+var fs = require('fs');
+const Json2csvParser = require('json2csv').Parser;
+mongoose.connect('mongodb://'+dbuser+':'+dbpassword+'@ds147659.mlab.com:47659/coordapps',function(err){
   if(err)
   console.log("Not Connected!!");
   else {
@@ -30,5 +32,29 @@ router.post('/adduser',function(req,res){
       }
     });
   });
+  router.get('/getusers/:token/:department',function(req,res){
+     if (req.params.token === '111') {
+      User.find({department: req.params.department}, function(err, users) {
+        var fields;
+        if (req.params.department === 'Events') {
+        fields = ['name','rollno','position','vertical','email','app_name'];
+      } else {
+        fields = ['name','rollno','position','email','app_name'];
+      }
+        const opts = { fields };
+        const parser = new Json2csvParser(opts);
+        var csv = parser.parse(users);
+                  var path=req.params.department+'.csv';
+                   fs.writeFile(path, csv, function(err,data) {
+                    if (err) {throw err;}
+                    else{
+                      res.download(path); // This is what you need
+                    }
+                  });
+      });
+    } else {
+      res.json(null);
+    }
+    });
   return router;
 };
