@@ -13,16 +13,21 @@ angular.module('submitController',['userServices','ngMaterial'])
     }
   };
 }])
-.controller('submitCtrl',function(User,$scope,$rootScope,$window,$http,DEPARTMENTS,APPS){
+.controller('submitCtrl',function(User,$scope,$rootScope,$window,$http,DEPARTMENTS,APPS,EVENTS){
   this.depts = DEPARTMENTS;
   this.app = APPS;
+  this.event = EVENTS;
   // $scope.department = $rootScope.globaldept;
   // $scope.posn = $rootScope.globalpos;
   // console.log($rootScope.globaldept);
   $scope.uploading = false;
   $scope.errormsg = null;
   $scope.successmsg = null;
+  this.department = '';
+	this.position = '';
+  this.vertical = '';
   $scope.ssb = false;
+  $scope.user={};
   $scope.$watch('file.upload', function (newVal) {
      if (newVal) {
        $scope.ssb = true;
@@ -38,13 +43,14 @@ angular.module('submitController',['userServices','ngMaterial'])
   //     }
 
   $scope.submitApp = function() {
-    swal({
-       title: 'Uploading your application...'
-     });
-     swal.showLoading();
-    $scope.errormsg = null;
-    $scope.successmsg = null;
-    $scope.uploading = true;
+    $scope.user.department = $scope.department;
+    $scope.user.position = $scope.position.name;
+    if($scope.department == 'Events')
+    {
+      $scope.user.position = $scope.position;
+      $scope.user.vertical = $scope.vertical.name;
+    }
+    console.log($scope.user);
     if (!$scope.file || !$scope.department || !$scope.position || !$scope.user.name || !$scope.user.email || !$scope.user.roll) {
       swal({
         type: 'error',
@@ -55,8 +61,15 @@ angular.module('submitController',['userServices','ngMaterial'])
       $scope.uploading = false;
       return;
     }
-    $scope.user.department = $scope.department;
-    $scope.user.position = $scope.position.name;
+    swal({
+       title: 'Uploading your application...'
+     });
+     swal.showLoading();
+    $scope.errormsg = null;
+    $scope.successmsg = null;
+    $scope.uploading = true;
+
+
     User.upload($scope.file).then(function(data){
       if (data.data.success) {
         $scope.user.app = data.data.url;
