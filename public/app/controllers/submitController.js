@@ -44,11 +44,14 @@ angular.module('submitController',['userServices','ngMaterial'])
 
   $scope.submitApp = function() {
     $scope.user.department = $scope.department;
-    $scope.user.position = $scope.position.name;
-    if($scope.department == 'Events')
+    if($scope.department === 'Events')
     {
       $scope.user.position = $scope.position;
       $scope.user.vertical = $scope.vertical.name;
+    }
+    else {
+      $scope.user.position = $scope.position.name;
+
     }
     console.log($scope.user);
     if (!$scope.file || !$scope.department || !$scope.position || !$scope.user.name || !$scope.user.email || !$scope.user.roll) {
