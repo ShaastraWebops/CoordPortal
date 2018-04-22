@@ -17,7 +17,7 @@ var userSchema = new Schema({
   email: {type: String, required: true, validate: emailValidator},
   department: {type: String, required: true},
   position: {type: String, required: true},
-  vertical: {type: String, required: true, default: 'Not Applicable (only for Events)'},
+  vertical: {type: String, default: 'Not Applicable (only for Events)'},
   app_name: {type: String, required: true}
 });
 
