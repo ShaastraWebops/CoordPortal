@@ -75,6 +75,6 @@ app.get('*',function(req,res){
   res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
 
-app.listen(port,function(){
+app.listen(port,'10.160.0.2',function(){
   console.log("Server running on port 8080");
 });
