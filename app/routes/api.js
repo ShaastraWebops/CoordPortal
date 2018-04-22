@@ -19,6 +19,9 @@ router.post('/adduser',function(req,res){
     user.position = req.body.position;
     user.rollno = req.body.roll;
     user.app_name = req.body.app;
+    if (req.body.vertical) {
+      user.vertical = req.body.vertical;
+    }
 
     user.save(function(err){
       if(err) { res.json({success: false, message: err});}

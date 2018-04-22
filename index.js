@@ -12,8 +12,8 @@ var fs = require('fs');
 var cloudinary = require('cloudinary');
 cloudinary.config({
   cloud_name: 'shaastra-apps',
-  api_key: '432668415634784',
-  api_secret: 'qX0H92PldVlzbax1zQfwNhDiPuI'
+  api_key: process.env.API_KEY,
+  api_secret: process.env.SECRET
 });
 
 app.use(morgan('dev'));
