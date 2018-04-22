@@ -1,6 +1,8 @@
 var User=require('../models/user');
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost:27017/CoordPortal',function(err){
+var dbuser = process.env.USER;
+var dbpassword = process.env.PASSWORD;
+mongoose.connect('mongodb://'+dbuser+':'+dbpassword+'@ds147659.mlab.com:47659/coordapps',{ useMongoClient: true },function(err){
   if(err)
   console.log("Not Connected!!");
   else {
