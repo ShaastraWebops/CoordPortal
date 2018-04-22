@@ -33,7 +33,7 @@ router.post('/adduser',function(req,res){
     });
   });
   router.get('/getusers/:token/:department',function(req,res){
-     if (req.params.token === '111') {
+     if (req.params.token === process.env.TOKEN) {
       User.find({department: req.params.department}, function(err, users) {
         var fields;
         if (req.params.department === 'Events') {
